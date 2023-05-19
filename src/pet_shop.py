@@ -1,6 +1,3 @@
-# import pdb
-
-
 
 def get_pet_shop_name(shop):
     name = shop["name"]
@@ -62,8 +59,27 @@ def add_pet_to_customer(customer, new_pet):
     customer["pets"].append(new_pet)
 
 
+def customer_can_afford_pet(customer, new_pet):
+    cash = customer["cash"]
+    price = new_pet["price"]
+    if cash >= price:
+        return True
+    else:
+        return False
+    
+def sell_pet_to_customer(shop, pet_given, customer):
+    # pdb.set_trace()
+    for pet in shop["pets"]:
+        if pet == pet_given:
+            if customer["cash"] >= pet["price"]:
+                customer["pets"].append(pet)
+                shop["admin"]["pets_sold"] += 1
+                customer["cash"] -= pet["price"]
+                shop["admin"]["total_cash"] += pet["price"]
+              
+    return None
+    
 
-        
     
 
 
